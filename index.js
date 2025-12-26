@@ -3,7 +3,8 @@ import 'react-native-get-random-values';
 import './shim.js';
 
 import React, { useEffect } from 'react';
-import { AppRegistry, LogBox } from 'react-native';
+import { LogBox } from 'react-native';
+import { registerRootComponent } from 'expo';
 
 import App from './App';
 import { restoreSavedPreferredFiatCurrencyAndExchangeFromStorage } from './blue_modules/currency';
@@ -28,4 +29,5 @@ const BlueAppComponent = () => {
   return <App />;
 };
 
-AppRegistry.registerComponent('BlueWallet', () => BlueAppComponent);
+// Use Expo's registerRootComponent instead of AppRegistry.registerComponent
+registerRootComponent(BlueAppComponent);
