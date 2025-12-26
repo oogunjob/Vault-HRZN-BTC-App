@@ -1,25 +1,23 @@
-# BlueWallet - A Bitcoin & Lightning Wallet
+# Vault by HRZN BTC - A Bitcoin & Lightning Wallet
 
-[![GitHub tag](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/BlueWallet/BlueWallet/master/package.json&query=$.version&label=Version)](https://github.com/BlueWallet/BlueWallet)
-[![CircleCI](https://circleci.com/gh/BlueWallet/BlueWallet.svg?style=svg)](https://circleci.com/gh/BlueWallet/BlueWallet)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/license/BlueWallet/BlueWallet.svg)
 
-Thin Bitcoin Wallet.
-Built with React Native and Electrum.
+**Vault by HRZN BTC** is a fork of the popular [BlueWallet](https://github.com/BlueWallet/BlueWallet) mobile wallet, rebuilt with Expo and enhanced with a modern design and new features.
 
-[![Appstore](https://bluewallet.io/uploads/app-store-badge-blue.svg)](https://itunes.apple.com/us/app/bluewallet-bitcoin-wallet/id1376878040?l=ru&ls=1&mt=8)
-[![Playstore](https://bluewallet.io/uploads/play-store-badge-blue.svg)](https://play.google.com/store/apps/details?id=io.bluewallet.bluewallet)
+## About
 
-Website: [bluewallet.io](https://bluewallet.io)
+This project is a fork of BlueWallet, a thin Bitcoin wallet built with React Native and Electrum. Vault has been converted to use Expo, providing improved developer experience, easier builds, and enhanced cross-platform compatibility. The app includes a refreshed design and will feature new functionality beyond the original BlueWallet.
 
-Community: [telegram group](https://t.me/bluewallet)
+### Key Features
 
 * Private keys never leave your device
 * Lightning Network supported
 * SegWit-first. Replace-By-Fee support
 * Encryption. Plausible deniability
-* And many more [features...](https://bluewallet.io/features)
+* Modern UI/UX design
+* Built with Expo for enhanced development workflow
+* New features and improvements coming soon
 
 
 <img src="https://i.imgur.com/hHYJnMj.png" width="100%">
@@ -27,108 +25,123 @@ Community: [telegram group](https://t.me/bluewallet)
 
 ## BUILD & RUN IT
 
-Please refer to the engines field in package.json file for the minimum required versions of Node and npm. It is preferred that you use an even-numbered version of Node as these are LTS versions.
+This project uses **Yarn** for package management and **Expo** for development and builds. Please refer to the engines field in `package.json` for the minimum required Node.js version (currently Node >= 22).
 
-To view the version of Node and npm in your environment, run the following in your console:
+To view the version of Node and Yarn in your environment, run:
 
-```
-node --version && npm --version
-```
-
-* In your console:
-
-```
-git clone https://github.com/BlueWallet/BlueWallet.git
-cd BlueWallet
-npm install
+```bash
+node --version && yarn --version
 ```
 
-Please make sure that your console is running the most stable versions of npm and node (even-numbered versions).
+### Prerequisites
 
-* To run on Android:
+* Node.js >= 22
+* Yarn package manager
+* Expo CLI (installed globally or via npx)
+* For iOS: Xcode and CocoaPods
+* For Android: Android Studio and Android SDK
 
-You will now need to either connect an Android device to your computer or run an emulated Android device using AVD Manager which comes shipped with Android Studio. To run an emulator using AVD Manager:
+### Installation
 
-1. Download and run Android Studio
-2. Click on "Open an existing Android Studio Project"
-3. Open `build.gradle` file under `BlueWallet/android/` folder
-4. Android Studio will take some time to set things up. Once everything is set up, go to `Tools` -> `AVD Manager`.
-    * 📝 This option [may take some time to appear in the menu](https://stackoverflow.com/questions/47173708/why-avd-manager-options-are-not-showing-in-android-studio) if you're opening the project in a freshly-installed version of Android Studio.
-5. Click on "Create Virtual Device..." and go through the steps to create a virtual device
-6. Launch your newly created virtual device by clicking the `Play` button under `Actions` column
+1. Clone the repository:
 
-Once you connected an Android device or launched an emulator, run this:
-
-```
-npx react-native run-android
+```bash
+git clone <repository-url>
+cd Vault-HRZN-BTC-App
 ```
 
-The above command will build the app and install it. Once you launch the app it will take some time for all of the dependencies to load. Once everything loads up, you should have the built app running.
+2. Install dependencies using Yarn:
 
-* To run on iOS:
-
-```
-npx pod-install
-npm start
+```bash
+yarn install
 ```
 
-In another terminal window within the BlueWallet folder:
-```
-npx react-native run-ios
-```
-**To debug BlueWallet on the iOS Simulator, you must choose a Rosetta-compatible iOS Simulator. This can be done by navigating to the Product menu in Xcode, selecting Destination Architectures, and then opting for "Show Both." This action will reveal the simulators that support Rosetta.
-**
+### Running the App
 
-* To run on macOS using Mac Catalyst:
+#### Start the Expo Development Server
 
-```
-npx pod-install
-npm start
+To start the development server with cache cleared (recommended for first run or after dependency changes):
+
+```bash
+npx expo start -c
 ```
 
-Open ios/BlueWallet.xcworkspace. Once the project loads, select the scheme/target BlueWallet. Click Run.
+Or using yarn:
+
+```bash
+yarn start
+```
+
+This will start the Metro bundler and open the Expo DevTools in your browser.
+
+#### Run on Android
+
+1. Connect an Android device via USB with USB debugging enabled, or start an Android emulator
+2. From the Expo DevTools, press `a` to open on Android, or run:
+
+```bash
+npx expo run:android
+```
+
+Or using yarn:
+
+```bash
+yarn android
+```
+
+#### Run on iOS
+
+1. Make sure you have Xcode installed
+2. Install iOS dependencies:
+
+```bash
+cd ios && pod install && cd ..
+```
+
+3. From the Expo DevTools, press `i` to open on iOS simulator, or run:
+
+```bash
+npx expo run:ios
+```
+
+Or using yarn:
+
+```bash
+yarn ios
+```
+
+**Note:** For iOS Simulator, you may need to choose a Rosetta-compatible simulator. In Xcode, navigate to Product → Destination Architectures → Show Both to see compatible simulators.
+
+### Development Commands
+
+* `yarn start` or `npx expo start` - Start the Expo development server
+* `yarn start -c` or `npx expo start -c` - Start with cache cleared
+* `yarn android` or `npx expo run:android` - Run on Android
+* `yarn ios` or `npx expo run:ios` - Run on iOS
 
 ## TESTS
 
 ```bash
-npm run test
+yarn test
 ```
 
+## WANT TO CONTRIBUTE?
+
+Contributions are welcome! This is a fork of BlueWallet that's been enhanced with Expo and new features. Feel free to submit issues and pull requests.
+
+## Based on BlueWallet
+
+This project is a fork of [BlueWallet](https://github.com/BlueWallet/BlueWallet), an open-source Bitcoin wallet. We've converted it to use Expo and are adding new features and design improvements.
+
+Original BlueWallet resources:
+* Website: [bluewallet.io](https://bluewallet.io)
+* Community: [telegram group](https://t.me/bluewallet)
 
 ## LICENSE
 
 MIT
 
-## WANT TO CONTRIBUTE?
-
-Grab an issue from [the backlog](https://github.com/BlueWallet/BlueWallet/issues), try to start or submit a PR, any doubts we will try to guide you. Contributors have a private telegram group, request access by email bluewallet@bluewallet.io
-
-## Translations
-
-We accept translations via [Transifex](https://www.transifex.com/bluewallet/bluewallet/)
-
-To participate you need to:
-1. Sign up to Transifex
-2. Find BlueWallet project
-3. Send join request
-4. After we accept your request you will be able to start translating! That's it!
-
-Please note the values in curly braces should not be translated. These are the names of the variables that will be inserted into the translated string. For example, the original string `"{number} of {total}"` in Russian will be `"{number} из {total}"`.
-
-Transifex automatically creates Pull Request when language reaches 100% translation. We also trigger this by hand before each release, so don't worry if you can't translate everything, every word counts.
-
-## Q&A
-
-Builds automated and tested with BrowserStack
-
-<a href="https://www.browserstack.com/"><img src="https://i.imgur.com/syscHCN.png" width="160px"></a>
-
-Bugs reported via BugSnag
-
-<a href="https://www.bugsnag.com"><img src="https://images.typeform.com/images/QKuaAssrFCq7/image/default" width="160px"></a>
-
-
 ## RESPONSIBLE DISCLOSURE
 
-Found critical bugs/vulnerabilities? Please email them bluewallet@bluewallet.io
+Found critical bugs/vulnerabilities? Please report them through the appropriate channels.
 Thanks!
