@@ -1,11 +1,81 @@
 {
   "expo": {
+    "name": "Vault",
+    "slug": "vault-hrzn",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hrznbtc.vault",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app requires camera access to scan QR codes for wallet transactions.",
+        "NSPhotoLibraryUsageDescription": "This app requires photo library access to save and load wallet QR codes.",
+        "NSPhotoLibraryAddUsageDescription": "This app requires permission to save QR codes to your photo library.",
+        "NSFaceIDUsageDescription": "This app uses Face ID for secure authentication to access your wallet.",
+        "NSLocationWhenInUseUsageDescription": "This app may use your location for enhanced security features."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "enableJetifier": true,
+      "package": "com.hrznbtc.vault",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0"
+          }
+        }
+      ],
+      [
+        "react-native-capture-protection",
+        {
+          "captureType": "base"
+        }
+      ],
+      [
+        "react-native-permissions",
+        {
+          "iosPermissions": [
+            "Camera",
+            "PhotoLibrary",
+            "PhotoLibraryAddOnly",
+            "FaceID"
+          ]
+        }
+      ],
+      "expo-dev-client"
+    ],
     "extra": {
       "eas": {
         "projectId": "862b2a7d-1a49-4666-8766-3f0d0afbe220"
       }
     },
-    "owner": "hrznbtc",
-    "slug": "vault-hrzn"
+    "owner": "hrznbtc"
   }
 }

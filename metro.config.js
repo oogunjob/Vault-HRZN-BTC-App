@@ -1,5 +1,4 @@
 const { getDefaultConfig } = require('expo/metro-config');
-const { mergeConfig } = require('@react-native/metro-config');
 const path = require('path');
 
 const resolveAliases = {
@@ -8,30 +7,30 @@ const resolveAliases = {
 };
 
 /**
- * Metro configuration
- * https://reactnative.dev/docs/metro
+ * Metro configuration for Expo
+ * https://docs.expo.dev/guides/customizing-metro/
  *
- * @type {import('@react-native/metro-config').MetroConfig}
+ * @type {import('expo/metro-config').MetroConfig}
  */
-const config = {
-  resolver: {
-    extraNodeModules: {
-      stream: require.resolve('stream-browserify'),
-      crypto: require.resolve('crypto-browserify'),
-      net: require.resolve('react-native-tcp-socket'),
-      tls: require.resolve('react-native-tcp-socket'),
-    },
-    resolveRequest: (context, moduleName, platform) => {
-      if (resolveAliases[moduleName])
-        return {
-          type: 'sourceFile',
-          filePath: resolveAliases[moduleName],
-        };
+const config = getDefaultConfig(__dirname);
 
-      // Fall back to default resolution
-      return context.resolveRequest(context, moduleName, platform);
-    },
-  },
+// Add custom resolver configuration
+config.resolver.extraNodeModules = {
+  stream: require.resolve('stream-browserify'),
+  crypto: require.resolve('crypto-browserify'),
+  net: require.resolve('react-native-tcp-socket'),
+  tls: require.resolve('react-native-tcp-socket'),
 };
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (resolveAliases[moduleName])
+    return {
+      type: 'sourceFile',
+      filePath: resolveAliases[moduleName],
+    };
+
+  // Fall back to default resolution
+  return context.resolveRequest(context, moduleName, platform);
+};
+
+module.exports = config;

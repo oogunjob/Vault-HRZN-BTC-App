@@ -27,7 +27,8 @@
         "singleQuote": true,
         "printWidth": 140,
         "trailingComma": "all",
-        "arrowParens": "avoid"
+        "arrowParens": "avoid",
+        "endOfLine": "lf"
       }
     ],
     "@typescript-eslint/no-empty-function": "off", // used often in the codebase, useful e.g. in testing
