@@ -3,13 +3,20 @@ import 'react-native-get-random-values';
 import './shim.js';
 
 import React, { useEffect } from 'react';
-import { AppRegistry, LogBox } from 'react-native';
+import { LogBox } from 'react-native';
+import { registerRootComponent } from 'expo';
 
 import App from './App';
 import { restoreSavedPreferredFiatCurrencyAndExchangeFromStorage } from './blue_modules/currency';
 
+// Enable better error display
+if (__DEV__) {
+  import('react-native').then(({ LogBox }) => {
+    LogBox.ignoreAllLogs(false);
+  });
+}
+
 if (!Error.captureStackTrace) {
-  // captureStackTrace is only available when debugging
   Error.captureStackTrace = () => {};
 }
 
@@ -28,4 +35,4 @@ const BlueAppComponent = () => {
   return <App />;
 };
 
-AppRegistry.registerComponent('BlueWallet', () => BlueAppComponent);
+registerRootComponent(BlueAppComponent);

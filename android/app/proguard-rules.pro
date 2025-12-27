@@ -7,9 +7,12 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Add any project specific keep options here:
-
+# React Native and Hermes
 -keep class com.facebook.hermes.unicode.** { *; }
 -keep class com.facebook.jni.** { *; }
--keep class com.swmansion.reanimated.** { *; }
 -keep class com.facebook.react.turbomodule.** { *; }
+
+# react-native-reanimated
+-keep class com.swmansion.reanimated.** { *; }
+
+# Add any project specific keep options here:
