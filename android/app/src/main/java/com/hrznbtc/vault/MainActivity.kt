@@ -1,61 +1,72 @@
 package com.hrznbtc.vault
 
-import android.os.Build
+import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
-
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 import com.facebook.react.defaults.DefaultReactActivityDelegate
-
-import expo.modules.ReactActivityDelegateWrapper
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
+import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
 
 class MainActivity : ReactActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    // Set the theme to AppTheme BEFORE onCreate to support
-    // coloring the background, status bar, and navigation bar.
-    // This is required for expo-splash-screen.
-    setTheme(R.style.AppTheme);
-    super.onCreate(null)
-  }
 
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  override fun getMainComponentName(): String = "main"
+    /**
+     * Returns the name of the main component registered from JavaScript.
+     * This is used to schedule rendering of the component.
+     */
+    override fun getMainComponentName(): String {
+        return "BlueWallet"
+    }
 
-  /**
-   * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
-   * which allows you to enable New Architecture with a single boolean flags [fabricEnabled]
-   */
-  override fun createReactActivityDelegate(): ReactActivityDelegate {
-    return ReactActivityDelegateWrapper(
-          this,
-          BuildConfig.IS_NEW_ARCHITECTURE_ENABLED,
-          object : DefaultReactActivityDelegate(
-              this,
-              mainComponentName,
-              fabricEnabled
-          ){})
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // react-native-screens override
+        supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+        super.onCreate(null)
+        if (resources.getBoolean(R.bool.portrait_only)) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
+    }
 
-  /**
-    * Align the back button behavior with Android S
-    * where moving root activities to background instead of finishing activities.
-    * @see <a href="https://developer.android.com/reference/android/app/Activity#onBackPressed()">onBackPressed</a>
-    */
-  override fun invokeDefaultOnBackPressed() {
-      if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) {
-          if (!moveTaskToBack(false)) {
-              // For non-root activities, use the default implementation to finish them.
-              super.invokeDefaultOnBackPressed()
-          }
-          return
-      }
+    override fun onResume() {
+        super.onResume()
+        Log.d("MainActivity", "MainActivity resumed. Confirming single instance is active.")
+        
+        // Check if we should show cache cleared alert
+        checkAndShowCacheClearedAlert()
+    }
+    
+    private fun checkAndShowCacheClearedAlert() {
+        val sharedPref = getSharedPreferences("group.com.hrznbtc.vault", Context.MODE_PRIVATE)
+        val shouldShowAlert = sharedPref.getBoolean("shouldShowCacheClearedAlert", false)
+        
+        if (shouldShowAlert) {
+            // Reset the flag
+            sharedPref.edit()
+                .putBoolean("shouldShowCacheClearedAlert", false)
+                .apply()
+            
+            // Show alert after a short delay to ensure UI is ready
+            Handler(Looper.getMainLooper()).postDelayed({
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.cache_cleared_title)
+                    .setMessage(R.string.cache_cleared_message)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show()
+            }, 500)
+        }
+    }
 
-      // Use the default back button implementation on Android S
-      // because it's doing more than [Activity.moveTaskToBack] in fact.
-      super.invokeDefaultOnBackPressed()
-  }
+    /**
+     * Returns the instance of the [ReactActivityDelegate]. Here we use a util class [DefaultReactActivityDelegate]
+     * which allows you to easily enable Fabric and Concurrent React (aka React 18) with two boolean flags.
+     */
+
+    override fun createReactActivityDelegate(): ReactActivityDelegate =
+        DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
 }
