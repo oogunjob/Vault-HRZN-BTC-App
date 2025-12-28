@@ -11,7 +11,7 @@ import WalletXpub from '../screen/wallets/xpub';
 import WalletExport from '../screen/wallets/WalletExport';
 
 // Lazy load all components except UnlockWith
-const DrawerRoot = lazy(() => import('./DrawerRoot'));
+import DrawerRoot from './DrawerRoot';
 const AddWalletStack = lazy(() => import('./AddWalletStack'));
 const SendDetailsStack = lazy(() => import('./SendDetailsStack'));
 const LNDCreateInvoiceRoot = lazy(() => import('./LNDCreateInvoiceStack'));
