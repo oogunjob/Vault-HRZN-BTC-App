@@ -4,6 +4,7 @@
     "slug": "vault-hrzn",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "com.hrznbtc.vault",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -69,7 +70,11 @@
           ]
         }
       ],
-      "expo-dev-client"
+      "expo-dev-client",
+      "expo-font",
+      "expo-router",
+      "expo-web-browser",
+      "expo-localization"
     ],
     "extra": {
       "eas": {
