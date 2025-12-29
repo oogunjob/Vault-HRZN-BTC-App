@@ -1,3 +1,4 @@
+import expo.modules.splashscreen.SplashScreenManager
 package com.hrznbtc.vault
 
 import android.content.Context
@@ -27,6 +28,9 @@ class MainActivity : ReactActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // react-native-screens override
         supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+    // @generated begin expo-splashscreen - expo prebuild (DO NOT MODIFY) sync-f3ff59a738c56c9a6119210cb55f0b613eb8b6af
+    SplashScreenManager.registerOnActivity(this)
+    // @generated end expo-splashscreen
         super.onCreate(null)
         if (resources.getBoolean(R.bool.portrait_only)) {
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

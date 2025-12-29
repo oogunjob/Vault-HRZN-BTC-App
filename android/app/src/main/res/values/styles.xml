@@ -2,7 +2,7 @@
   <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="android:enforceNavigationBarContrast" tools:targetApi="29">true</item>
     <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
-    <item name="android:statusBarColor">#ffffff</item>
+    <item name="android:statusBarColor">#F7931A</item>
     <item name="colorPrimary">@color/colorPrimary</item>
   </style>
   <style name="WidgetTextPrimary">
@@ -11,7 +11,10 @@
   <style name="WidgetTextSecondary">
     <item name="android:textColor">@color/text_secondary</item>
   </style>
-  <style name="Theme.App.SplashScreen" parent="AppTheme">
-    <item name="android:windowBackground">@drawable/ic_launcher_background</item>
+  <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/splashscreen_background</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/splashscreen_logo</item>
+    <item name="postSplashScreenTheme">@style/AppTheme</item>
+    <item name="android:windowSplashScreenBehavior">icon_preferred</item>
   </style>
 </resources>

@@ -70,6 +70,15 @@
           ]
         }
       ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/transparent-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#F7931A"
+        }
+      ],
       "expo-dev-client",
       "expo-font",
       "expo-router",
