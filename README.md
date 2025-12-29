@@ -1,5 +1,9 @@
 # Vault by HRZN BTC - A Bitcoin & Lightning Wallet
 
+<div align="center">
+  <img src="assets/transparent-icon.png" alt="Vault by HRZN BTC Logo" width="200" />
+</div>
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/github/license/BlueWallet/BlueWallet.svg)
 

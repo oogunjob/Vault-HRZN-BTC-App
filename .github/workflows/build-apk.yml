@@ -49,7 +49,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Setup Gradle (Read-only cache)
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
         with:
           cache-read-only: true
 
