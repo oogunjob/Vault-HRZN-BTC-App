@@ -1,6 +1,6 @@
-import expo.modules.splashscreen.SplashScreenManager
 package com.hrznbtc.vault
 
+import expo.modules.splashscreen.SplashScreenManager
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
