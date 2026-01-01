@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Dimensions, View, Text } from 'react-native';
 import { useColorScheme } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import AnimatedBitcoinInput from '@/components/AnimatedBitcoinInput';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ThemedView } from '@/components/themed-view';
@@ -218,16 +219,39 @@ export default function PayScreen() {
             
             {/* Action Buttons */}
             <View style={styles.actionButtons}>
-              <TouchableOpacity style={[styles.actionButton, styles.payButton]}>
-                <ThemedText style={styles.actionButtonText}>Pay</ThemedText>
+              {/* Request Button */}
+              <TouchableOpacity
+                style={[
+                  styles.actionButton,
+                  { 
+                    backgroundColor: colorScheme === 'dark' ? '#4a4a4a' : '#e5e5e5',
+                    borderWidth: 2,
+                    borderColor: colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
+                  }
+                ]}
+                activeOpacity={0.85}
+              >
+                <Text style={[
+                  styles.actionButtonText,
+                  { color: colorScheme === 'dark' ? '#fff' : '#333' }
+                ]}>Request</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[
-                styles.actionButton,
-                { backgroundColor: borderColor }
-              ]}>
-              <ThemedText style={[styles.actionButtonText, { color: textColor }]}>Request</ThemedText>
-            </TouchableOpacity>
-          </View>
+              
+              {/* Pay Button */}
+              <TouchableOpacity
+                style={styles.payButtonContainer}
+                activeOpacity={0.85}
+              >
+                <LinearGradient
+                  colors={['#f97316', '#ea580c']}
+                  style={styles.payButtonGradient}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                >
+                  <Text style={styles.payButtonText}>Pay</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
         </View>
         </ThemedView>
       </SafeAreaView>
@@ -293,18 +317,38 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     flex: 1,
-    paddingVertical: 16,
-    borderRadius: 12,
+    paddingVertical: 18,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  payButton: {
-    backgroundColor: '#00D9FF',
-  },
   actionButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  payButtonContainer: {
+    flex: 1,
+    borderRadius: 16,
+    overflow: 'hidden',
+    shadowColor: '#f97316',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  payButtonGradient: {
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  payButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
   },
   keyboardContainer: {
     paddingTop: 10,
