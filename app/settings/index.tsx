@@ -118,7 +118,7 @@ export default function SettingsScreen() {
             style={styles.headerButton}
             onPress={() => router.back()}
           >
-            <MaterialCommunityIcons name="arrow-left" size={24} color={textColor} />
+            <MaterialCommunityIcons name="close" size={24} color={textColor} />
           </TouchableOpacity>
           <ThemedText type="title" style={styles.headerTitle}>Settings</ThemedText>
           <View style={styles.headerButton} />

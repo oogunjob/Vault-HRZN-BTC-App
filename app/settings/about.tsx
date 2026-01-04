@@ -30,11 +30,11 @@ export default function AboutScreen() {
   };
 
   const handleGithubPress = () => {
-    Linking.openURL('https://github.com/hrznbtc');
+    Linking.openURL('https://github.com/oogunjob/HRZN-Mobile-App');
   };
 
   const handleLicensePress = () => {
-    Linking.openURL('https://opensource.org/licenses/MIT');
+    Linking.openURL('https://github.com/oogunjob/HRZN-Mobile-App/blob/master/LICENSE');
   };
 
   const handleRatePress = () => {
@@ -55,7 +55,7 @@ export default function AboutScreen() {
 
   const socialLinks = [
     {
-      name: 'Twitter',
+      name: 'X (Twitter)',
       icon: 'twitter',
       color: '#1DA1F2',
       handle: '@hrznbtc',
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   brandSection: {
     alignItems: 'center',
     paddingHorizontal: 40,
-    marginBottom: 30,
+    marginBottom: 20,
     paddingTop: 20,
   },
   logoWrapper: {
@@ -268,9 +268,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   description: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
-    lineHeight: 20,
+    lineHeight: 24,
   },
   reviewButtonContainer: {
     marginHorizontal: 20,
